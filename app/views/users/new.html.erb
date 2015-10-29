@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Log in</title>
+</head>
+<body>
+
+<% if flash[:error] -%>
+  <p class='error'><%=h flash[:error] %></p>
+<% end %>
+
+<div class="container">
+	<div class="row">
+		<div class="col-sm-3">
+			<h1>Register</h1>
+			<form action="/users" method="post">
+				<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+				<div class="form-group">
+					<label for="First Name">First Name:</label>
+					<input class="form-control" type="text" name="users[first_name]">
+				</div>
+				<div class="form-group">
+					<label for="Last Name">Last Name:</label>
+					<input class="form-control" type="text" name="users[last_name]">
+				</div>
+				<div class="form-group">
+					<label for="Email">Email:</label>
+					<input class="form-control" type="text" name="users[email]">
+				</div>
+				<div class="form-group">
+					<label for="Location">City</label>
+					<input class="form-control" type="text" name="users[location]">
+					<label for="State">State:</label>
+					<select class="form-control" name="users[state]">
+						<option value="CA">CA</option>
+						<option value="WA">WA</option>
+						<option value="AZ">AZ</option>
+					</select> 
+				</div>
+				<div class="form-group">
+					<label for="Password">Password:</label>
+					<input class="form-control" type="password" name="users[password]">
+				</div>
+				<div class="form-group">
+					<label for="Password_confirmation">Confirm PW:</label>
+					<input class="form-control" type="password" name="users[password_confirmation]">
+				</div>
+				<input class="btn btn-primary" type="submit" value="Register!">
+			</form>
+		</div>
+		<div class="col-sm-3"></div>
+		<div class="col-sm-3">
+			<h1>Log In</h1>
+			<form action="/sessions" method="post">
+				<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+				<div class="form-group">
+					<label for="Email">Email:</label>
+					<input class="form-control" type="text" name="sessions[email]">
+				</div>
+				<div class="form-group">
+					<label for="Password">Password:</label>
+					<input class="form-control" type="password" name="sessions[password]">
+				</div>
+				<input class="btn btn-primary" type="submit" value="Log In!">
+			</form>
+		</div>
+	</div>
+</div>
+</body>
+</html>

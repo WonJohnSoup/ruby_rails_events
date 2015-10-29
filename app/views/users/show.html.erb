@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>User Profile Page</title>
+	<style>
+		#log_out{
+			display: inline;
+			vertical-align: top
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-5"></div>
+			<div class="col-sm-6">
+				<a href="/events">Events Dashboard  </a>
+				<span>|</span>
+				<% if current_user %>
+				    <form id="log_out" action='/sessions' method='post'>
+					    <input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
+					    <input type='hidden' name='_method' value='delete'>
+				    	<input class="btn btn-danger" type='submit' value='Log Out'>
+					</form>
+				<% end %>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-3">
+				<h3>Edit Your Profile</h3>
+				<form action="/users/<%= @user.id %>">
+					<input type="hidden" name="_method" value="patch">
+					<input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
+					<div class="form-group">
+						<label for="First Name">First Name:</label>
+						<input class="form-control" type="text" name="users[first_name]" value="<%= @user.first_name %>">
+					</div>
+					<div class="form-group">
+						<label for="Last Name">Last Name:</label>
+						<input class="form-control" type="text" name="users[last_name]" value="<%= @user.last_name %>">
+					</div>
+					<div class="form-group">
+						<label for="Email">Email:</label>
+						<input class="form-control" type="text" name="users[email]" value="<%= @user.email %>">
+					</div>
+					<div class="form-group">
+						<label for="Location">City</label>
+						<input class="form-control" type="text" name="users[location]" value="<%= @user.location %>">
+						<label for="State">State:</label>
+						<select class="form-control" name="users[state]">
+							<option value="CA">CA</option>
+							<option value="WA">WA</option>
+							<option value="AZ">AZ</option>
+						</select> 
+					</div>
+					<input class="btn btn-primary" type="submit" value="Update!">
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

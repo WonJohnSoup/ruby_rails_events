@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Review</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+  <link rel="stylesheet" href="..\..\assets\bootstrap.css" >
+  <link rel="stylesheet" href="..\..\assets\bootstrap-theme.css" >
+</head>
+<body>
+<% if flash[:errors] %>
+	<% flash[:errors].each do |e| %>
+		<p style="color: red"><%= e %></p>
+	<% end %>
+<% end %>
+
+<%= yield %>
+
+</body>
+</html>
